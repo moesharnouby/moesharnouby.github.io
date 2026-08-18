@@ -114,7 +114,7 @@
   const savedTheme = localStorage.getItem("portfolio-theme");
   if (savedTheme) root.dataset.theme = savedTheme;
   function syncThemeColor() {
-    themeColor.setAttribute("content", root.dataset.theme === "light" ? "#efefec" : "#0b0f14");
+    themeColor.setAttribute("content", root.dataset.theme === "light" ? "#ecece7" : "#0b0d0c");
   }
   syncThemeColor();
   document.querySelector(".theme-toggle").addEventListener("click", () => {
