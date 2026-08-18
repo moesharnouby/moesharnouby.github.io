@@ -111,6 +111,74 @@
     syncThemeColor();
   });
 
+  const systemsOrbit = document.querySelector(".systems-orbit");
+  if (systemsOrbit) {
+    if ("IntersectionObserver" in window) {
+      const orbitObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("is-animated", entry.isIntersecting);
+        });
+      }, { threshold: 0.12 });
+      orbitObserver.observe(systemsOrbit);
+    } else {
+      systemsOrbit.classList.add("is-animated");
+    }
+  }
+
+  const roleRotator = document.querySelector("[data-role-rotator]");
+  if (roleRotator) {
+    const roles = [
+      "Mechatronics Engineer",
+      "Embedded Systems Engineer",
+      "Model-Based Design Engineer"
+    ];
+    const progress = roleRotator.parentElement.querySelector(".role-progress");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let roleIndex = 0;
+    let roleTimer = null;
+
+    function restartRoleProgress() {
+      progress.classList.remove("is-running");
+      void progress.offsetWidth;
+      progress.classList.add("is-running");
+    }
+
+    function changeRole() {
+      roleRotator.classList.add("is-leaving");
+      window.setTimeout(() => {
+        roleIndex = (roleIndex + 1) % roles.length;
+        roleRotator.textContent = roles[roleIndex];
+        roleRotator.classList.remove("is-leaving");
+        roleRotator.classList.add("is-entering");
+        restartRoleProgress();
+        window.setTimeout(() => roleRotator.classList.remove("is-entering"), 420);
+      }, 240);
+    }
+
+    function startRoleRotation() {
+      if (reduceMotion || roleTimer) return;
+      restartRoleProgress();
+      roleTimer = window.setInterval(changeRole, 3600);
+    }
+
+    function stopRoleRotation() {
+      if (!roleTimer) return;
+      window.clearInterval(roleTimer);
+      roleTimer = null;
+      progress.classList.remove("is-running");
+    }
+
+    if ("IntersectionObserver" in window) {
+      const roleObserver = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) startRoleRotation();
+        else stopRoleRotation();
+      }, { threshold: 0.25 });
+      roleObserver.observe(roleRotator.parentElement);
+    } else {
+      startRoleRotation();
+    }
+  }
+
   document.querySelector("#current-year").textContent = new Date().getFullYear();
   renderProjects();
   openTab(location.hash.replace("#", "") || "home", false);

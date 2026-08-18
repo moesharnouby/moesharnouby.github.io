@@ -269,22 +269,44 @@ img { display: block; max-width: 100%; }
   position: relative;
   z-index: 2;
   width: calc(100% - 32px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .4rem;
+  min-height: 58px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
   margin: 16px;
-  padding: .9rem 1rem;
+  padding: .85rem 1rem;
   border: 1px solid rgba(255,255,255,.16);
   border-radius: 14px;
   background: rgba(8, 11, 15, .64);
   backdrop-filter: blur(10px);
-  white-space: nowrap;
 }
-.portrait-label strong { color: white; font-size: .8rem; }
-.portrait-label span, .portrait-label abbr { color: #c7ced6; font-size: .72rem; }
-.portrait-label abbr { text-decoration: none; }
-.portrait-label > * + *::before { content: "·"; margin-right: .4rem; color: #87919c; font-weight: 400; }
+.portrait-role {
+  color: white;
+  font-size: .86rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  transition: opacity .24s ease, transform .24s ease, filter .24s ease;
+}
+.portrait-role.is-leaving { opacity: 0; transform: translateY(-9px); filter: blur(3px); }
+.portrait-role.is-entering { animation: role-enter .38s ease both; }
+.role-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 9px color-mix(in srgb, var(--accent-2) 54%, transparent);
+}
+.role-progress.is-running { animation: role-progress 3.6s linear both; }
+@keyframes role-enter {
+  from { opacity: 0; transform: translateY(9px); filter: blur(3px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+@keyframes role-progress { to { transform: scaleX(1); } }
 
 .stats {
   display: grid;
@@ -316,6 +338,7 @@ img { display: block; max-width: 100%; }
 .systems-orbit {
   --map-cool: var(--accent-2);
   --map-warm: var(--accent);
+  --motion-state: paused;
   position: relative;
   width: min(100%, 900px);
   aspect-ratio: 1.48;
@@ -333,6 +356,19 @@ img { display: block; max-width: 100%; }
   box-shadow: inset 0 0 90px color-mix(in srgb, var(--bg) 72%, transparent);
   isolation: isolate;
 }
+.systems-orbit.is-animated { --motion-state: running; }
+.systems-orbit::before {
+  content: "";
+  position: absolute;
+  inset: -30% 0 auto;
+  z-index: -1;
+  height: 30%;
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--accent-2) 9%, transparent), transparent);
+  filter: blur(8px);
+  animation: map-scan 7s linear infinite;
+  animation-play-state: var(--motion-state);
+  pointer-events: none;
+}
 
 .orbit-ring {
   position: absolute;
@@ -342,9 +378,11 @@ img { display: block; max-width: 100%; }
   translate: -50% -50%;
   border: 1px dashed color-mix(in srgb, var(--accent-2) 20%, transparent);
   border-radius: 50%;
+  animation: orbit-spin 28s linear infinite;
+  animation-play-state: var(--motion-state);
 }
 .orbit-ring-one { width: 64%; aspect-ratio: 1; }
-.orbit-ring-two { width: 46%; aspect-ratio: 1; border-color: color-mix(in srgb, var(--accent) 18%, transparent); }
+.orbit-ring-two { width: 46%; aspect-ratio: 1; border-color: color-mix(in srgb, var(--accent) 18%, transparent); animation-duration: 19s; animation-direction: reverse; }
 
 .signal-line {
   position: absolute;
@@ -357,10 +395,10 @@ img { display: block; max-width: 100%; }
   background: linear-gradient(90deg, var(--map-cool), color-mix(in srgb, var(--map-cool) 10%, transparent));
   box-shadow: 0 0 10px color-mix(in srgb, var(--map-cool) 48%, transparent);
 }
-.signal-line::after {
+.signal-line::before, .signal-line::after {
   content: "";
   position: absolute;
-  left: 55%;
+  left: 0;
   top: 50%;
   width: 7px;
   height: 7px;
@@ -368,14 +406,18 @@ img { display: block; max-width: 100%; }
   border-radius: 50%;
   background: currentColor;
   box-shadow: 0 0 12px currentColor;
-  animation: signal-pulse 2.8s ease-in-out infinite;
+  opacity: 0;
+  animation: signal-travel var(--signal-speed, 3.2s) linear infinite;
+  animation-delay: var(--signal-delay, 0s);
+  animation-play-state: var(--motion-state);
 }
-.signal-top { transform: rotate(-90deg); color: var(--map-cool); }
-.signal-upper-right { transform: rotate(-34deg); color: var(--map-warm); background: linear-gradient(90deg, var(--map-warm), color-mix(in srgb, var(--map-warm) 10%, transparent)); }
-.signal-lower-right { transform: rotate(34deg); color: var(--map-cool); }
-.signal-bottom { transform: rotate(90deg); color: var(--map-warm); background: linear-gradient(90deg, var(--map-warm), color-mix(in srgb, var(--map-warm) 10%, transparent)); }
-.signal-lower-left { transform: rotate(146deg); color: var(--map-cool); }
-.signal-upper-left { transform: rotate(214deg); color: var(--map-warm); background: linear-gradient(90deg, var(--map-warm), color-mix(in srgb, var(--map-warm) 10%, transparent)); }
+.signal-line::after { animation-delay: calc(var(--signal-delay, 0s) - 1.6s); }
+.signal-top { --signal-speed: 2.8s; --signal-delay: -.35s; transform: rotate(-90deg); color: var(--map-cool); }
+.signal-upper-right { --signal-speed: 3.4s; --signal-delay: -1.15s; transform: rotate(-34deg); color: var(--map-warm); background: linear-gradient(90deg, var(--map-warm), color-mix(in srgb, var(--map-warm) 10%, transparent)); }
+.signal-lower-right { --signal-speed: 3.1s; --signal-delay: -.7s; transform: rotate(34deg); color: var(--map-cool); }
+.signal-bottom { --signal-speed: 2.9s; --signal-delay: -1.6s; transform: rotate(90deg); color: var(--map-warm); background: linear-gradient(90deg, var(--map-warm), color-mix(in srgb, var(--map-warm) 10%, transparent)); }
+.signal-lower-left { --signal-speed: 3.5s; --signal-delay: -2.1s; transform: rotate(146deg); color: var(--map-cool); }
+.signal-upper-left { --signal-speed: 3.25s; --signal-delay: -.95s; transform: rotate(214deg); color: var(--map-warm); background: linear-gradient(90deg, var(--map-warm), color-mix(in srgb, var(--map-warm) 10%, transparent)); }
 .signal-upper-right, .signal-lower-right, .signal-lower-left, .signal-upper-left { width: 42%; }
 
 .system-hub {
@@ -395,6 +437,8 @@ img { display: block; max-width: 100%; }
   text-align: center;
   box-shadow: 0 0 0 7px color-mix(in srgb, var(--accent-2) 7%, transparent), 0 0 38px color-mix(in srgb, var(--accent-2) 24%, transparent);
   backdrop-filter: blur(12px);
+  animation: hub-breathe 4.4s ease-in-out infinite;
+  animation-play-state: var(--motion-state);
 }
 .system-hub::before {
   content: "";
@@ -429,6 +473,8 @@ img { display: block; max-width: 100%; }
   font-weight: 900;
   letter-spacing: .04em;
   box-shadow: 0 0 0 8px color-mix(in srgb, currentColor 6%, transparent), 0 0 24px color-mix(in srgb, currentColor 28%, transparent);
+  animation: node-breathe 3.8s ease-in-out infinite;
+  animation-play-state: var(--motion-state);
 }
 .node-symbol::after {
   content: "";
@@ -451,10 +497,28 @@ img { display: block; max-width: 100%; }
 .node-bottom { left: 50%; bottom: 3%; translate: -50% 0; }
 .node-lower-left { left: 5%; bottom: 18%; }
 .node-upper-left { left: 5%; top: 28%; }
+.node-top .node-symbol { animation-delay: -.4s; }
+.node-upper-right .node-symbol { animation-delay: -1.05s; }
+.node-lower-right .node-symbol { animation-delay: -1.7s; }
+.node-bottom .node-symbol { animation-delay: -2.35s; }
+.node-lower-left .node-symbol { animation-delay: -3s; }
+.node-upper-left .node-symbol { animation-delay: -3.65s; }
 
-@keyframes signal-pulse {
-  0%, 100% { opacity: .45; transform: scale(.75); }
-  50% { opacity: 1; transform: scale(1.2); }
+@keyframes signal-travel {
+  0% { left: 0; opacity: 0; transform: scale(.7); }
+  12% { opacity: 1; }
+  82% { opacity: 1; }
+  100% { left: 100%; opacity: 0; transform: scale(1.25); }
+}
+@keyframes orbit-spin { to { transform: rotate(360deg); } }
+@keyframes map-scan { to { transform: translateY(630%); } }
+@keyframes hub-breathe {
+  0%, 100% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--accent-2) 7%, transparent), 0 0 30px color-mix(in srgb, var(--accent-2) 18%, transparent); }
+  50% { box-shadow: 0 0 0 11px color-mix(in srgb, var(--accent-2) 10%, transparent), 0 0 52px color-mix(in srgb, var(--accent-2) 34%, transparent); }
+}
+@keyframes node-breathe {
+  0%, 100% { scale: .96; filter: brightness(.9); }
+  50% { scale: 1.04; filter: brightness(1.18); }
 }
 
 .home-feature { padding-block: 96px; }
@@ -736,10 +800,8 @@ img { display: block; max-width: 100%; }
   .brand-identity span { right: -7px; width: 25px; font-size: .5rem; }
   .brand-copy strong { max-width: 54px; font-size: .8rem; }
   .theme-toggle, .menu-toggle { width: 36px; height: 36px; }
-  .portrait-label { width: calc(100% - 20px); gap: .28rem; margin: 10px; padding: .75rem .65rem; }
-  .portrait-label strong { font-size: .72rem; }
-  .portrait-label span, .portrait-label abbr { font-size: .66rem; }
-  .portrait-label > * + *::before { margin-right: .28rem; }
+  .portrait-label { width: calc(100% - 20px); min-height: 52px; margin: 10px; padding: .7rem .55rem; }
+  .portrait-role { font-size: .74rem; }
   .project-copy > p { flex-direction: column; gap: .2rem; }
 }
 
