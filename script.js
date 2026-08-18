@@ -9,6 +9,7 @@
   const projectGrid = document.querySelector("#project-grid");
   const dialog = document.querySelector("#project-dialog");
   const dialogContent = document.querySelector("#dialog-content");
+  const themeColor = document.querySelector('meta[name="theme-color"]');
   const projects = window.portfolioProjects || [];
 
   function openTab(name, updateHash = true) {
@@ -100,9 +101,14 @@
 
   const savedTheme = localStorage.getItem("portfolio-theme");
   if (savedTheme) root.dataset.theme = savedTheme;
+  function syncThemeColor() {
+    themeColor.setAttribute("content", root.dataset.theme === "light" ? "#efefec" : "#0b0f14");
+  }
+  syncThemeColor();
   document.querySelector(".theme-toggle").addEventListener("click", () => {
     root.dataset.theme = root.dataset.theme === "light" ? "dark" : "light";
     localStorage.setItem("portfolio-theme", root.dataset.theme);
+    syncThemeColor();
   });
 
   document.querySelector("#current-year").textContent = new Date().getFullYear();

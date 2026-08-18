@@ -17,15 +17,22 @@
 
 :root[data-theme="light"] {
   color-scheme: light;
-  --bg: #f4f1eb;
-  --bg-elevated: #fffdf9;
-  --surface: #ebe7df;
-  --surface-2: #e2ddd4;
-  --text: #14181e;
-  --muted: #5d6670;
-  --faint: #7b838b;
-  --line: #d2ccc1;
-  --shadow: 0 28px 80px rgba(50, 42, 30, .12);
+  --bg: #efefec;
+  --bg-elevated: #f8f8f5;
+  --surface: #e5e5e0;
+  --surface-2: #dcdcd6;
+  --text: #111315;
+  --muted: #555b61;
+  --faint: #747a80;
+  --line: #ccccc6;
+  --accent-2: #8e949a;
+  --shadow: 0 28px 80px rgba(8, 10, 12, .1);
+}
+
+:root[data-theme="light"] body {
+  background:
+    radial-gradient(circle at 76% 8%, rgba(12, 14, 16, .035), transparent 26rem),
+    var(--bg);
 }
 
 * { box-sizing: border-box; }
