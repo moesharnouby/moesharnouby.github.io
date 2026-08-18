@@ -181,6 +181,66 @@
     }
   }
 
+  const heroPortrait = document.querySelector("[data-hero-portrait]");
+  if (heroPortrait) {
+    const reducePortraitMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePortraitPointer = window.matchMedia("(pointer: fine)").matches;
+
+    if (!reducePortraitMotion && finePortraitPointer) {
+      heroPortrait.addEventListener("pointermove", (event) => {
+        const rect = heroPortrait.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        heroPortrait.style.setProperty("--portrait-x", `${x * 15}px`);
+        heroPortrait.style.setProperty("--portrait-y", `${y * 10}px`);
+        heroPortrait.style.setProperty("--portrait-inverse-x", `${x * -7}px`);
+        heroPortrait.style.setProperty("--portrait-inverse-y", `${y * -5}px`);
+        heroPortrait.style.setProperty("--portrait-tilt-x", `${y * -2.5}deg`);
+        heroPortrait.style.setProperty("--portrait-tilt-y", `${x * 3.5}deg`);
+      });
+      heroPortrait.addEventListener("pointerleave", () => {
+        ["--portrait-x", "--portrait-y", "--portrait-inverse-x", "--portrait-inverse-y"].forEach((property) => heroPortrait.style.setProperty(property, "0px"));
+        heroPortrait.style.setProperty("--portrait-tilt-x", "0deg");
+        heroPortrait.style.setProperty("--portrait-tilt-y", "0deg");
+      });
+    }
+  }
+
+  const contactMotion = document.querySelector("[data-contact-motion]");
+  if (contactMotion) {
+    const reduceContactMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+    if (!reduceContactMotion && "IntersectionObserver" in window) {
+      const contactObserver = new IntersectionObserver(([entry]) => {
+        contactMotion.classList.toggle("is-in-view", entry.isIntersecting);
+      }, { threshold: 0.18 });
+      contactObserver.observe(contactMotion);
+    } else {
+      contactMotion.classList.add("is-in-view");
+    }
+
+    if (!reduceContactMotion && finePointer) {
+      contactMotion.addEventListener("pointerenter", () => contactMotion.classList.add("is-interacting"));
+      contactMotion.addEventListener("pointermove", (event) => {
+        const rect = contactMotion.getBoundingClientRect();
+        const xRatio = (event.clientX - rect.left) / rect.width;
+        const yRatio = (event.clientY - rect.top) / rect.height;
+        contactMotion.style.setProperty("--contact-x", `${(xRatio - 0.5) * 32}px`);
+        contactMotion.style.setProperty("--contact-y", `${(yRatio - 0.5) * 22}px`);
+        contactMotion.style.setProperty("--glow-x", `${xRatio * 100}%`);
+        contactMotion.style.setProperty("--glow-y", `${yRatio * 100}%`);
+      });
+      contactMotion.addEventListener("pointerleave", () => {
+        contactMotion.classList.remove("is-interacting");
+        contactMotion.style.setProperty("--contact-x", "0px");
+        contactMotion.style.setProperty("--contact-y", "0px");
+        contactMotion.style.setProperty("--glow-x", "50%");
+        contactMotion.style.setProperty("--glow-y", "50%");
+      });
+    }
+  }
+
   document.querySelector("#current-year").textContent = new Date().getFullYear();
   renderProjects();
   const initialView = location.hash.replace("#", "") || "home";
