@@ -1,14 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <clipPath id="faceCrop">
-      <circle cx="27" cy="27" r="25"/>
-    </clipPath>
-  </defs>
-  <circle cx="27" cy="27" r="27" fill="#f4f6f8"/>
-  <image href="profile-2026.jpg" x="2" y="2" width="50" height="50"
-    preserveAspectRatio="xMidYMin slice" clip-path="url(#faceCrop)"/>
-  <circle cx="27" cy="27" r="25" fill="none" stroke="#ffffff" stroke-width="2"/>
-  <rect x="38" y="37" width="25" height="25" rx="8" fill="#ff5a36" stroke="#0d1218" stroke-width="3"/>
-  <text x="50.5" y="54.5" fill="#ffffff" font-family="Arial, sans-serif" font-size="15"
-    font-weight="900" text-anchor="middle">M</text>
+  <rect x="2" y="2" width="60" height="60" rx="17" fill="#ff5a36"/>
+  <text x="32" y="46" fill="#ffffff" font-family="Arial, sans-serif" font-size="42"
+    font-weight="900" text-anchor="middle">m</text>
 </svg>
