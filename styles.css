@@ -238,30 +238,17 @@ img { display: block; max-width: 100%; }
   position: relative;
   width: min(100%, 340px);
   min-height: 0;
-  aspect-ratio: 34 / 41;
+  aspect-ratio: 1;
   justify-self: end;
   overflow: hidden;
   display: flex;
   align-items: flex-end;
-  border: 1px solid var(--line);
-  border-radius: 30px;
-  background: linear-gradient(145deg, var(--surface), var(--surface-2));
-  box-shadow: var(--shadow);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   color: inherit;
   text-decoration: none;
-  isolation: isolate;
-}
-
-.portrait-glow {
-  position: absolute;
-  width: 340px;
-  height: 340px;
-  inset: 9% auto auto 50%;
-  z-index: -1;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 42%, transparent), transparent 66%);
-  filter: blur(10px);
 }
 
 .portrait-card img {
@@ -269,16 +256,13 @@ img { display: block; max-width: 100%; }
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: 50% 32%;
+  object-fit: contain;
+  object-position: center bottom;
   image-rendering: auto;
 }
 
 .portrait-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 50%, rgba(6, 9, 13, .88));
+  content: none;
 }
 
 .portrait-label {
@@ -504,12 +488,16 @@ img { display: block; max-width: 100%; }
   .brand-identity span { right: -8px; bottom: -4px; width: 27px; height: 20px; }
   .brand-copy strong { max-width: 136px; overflow: hidden; font-size: .84rem; text-overflow: ellipsis; white-space: nowrap; }
   .theme-toggle, .menu-toggle { width: 38px; height: 38px; }
-  .hero-grid { gap: 2rem; padding-block: 48px 38px; }
+  .hero-grid { gap: 0; padding-block: 48px 38px; }
+  .hero-copy { display: contents; }
   .hero-copy h1, .page-intro h1 { overflow-wrap: anywhere; font-size: clamp(2.45rem, 13vw, 4.2rem); }
-  .hero-lead { font-size: .98rem; }
+  .hero-copy h1 { order: 1; }
+  .portrait-card { order: 2; width: min(82vw, 290px); margin: 1.25rem auto .5rem; aspect-ratio: 1; justify-self: center; }
+  .hero-lead { order: 3; margin-top: .8rem; font-size: .98rem; }
+  .hero-actions { order: 4; margin-top: 1.5rem; }
+  .contact-links { order: 5; margin-top: 1.1rem; }
   .hero-actions .button { flex: 1 1 170px; }
   .contact-links { display: grid; gap: .45rem; }
-  .portrait-card { width: min(100%, 320px); min-height: 0; aspect-ratio: 32 / 37; justify-self: center; border-radius: 22px; }
   .stats { grid-template-columns: 1fr 1fr; }
   .stats article { padding: 1.2rem 1rem; }
   .stats article:first-child, .stats article:nth-child(3) { padding-left: 0; }
