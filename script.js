@@ -12,7 +12,7 @@
   const themeColor = document.querySelector('meta[name="theme-color"]');
   const projects = window.portfolioProjects || [];
 
-  function openTab(name, updateHash = true) {
+  function openTab(name, updateHash = true, scrollTop = true) {
     if (!panels.some((panel) => panel.dataset.tabPanel === name)) name = "home";
     panels.forEach((panel) => {
       const active = panel.dataset.tabPanel === name;
@@ -27,11 +27,23 @@
     nav.classList.remove("is-open");
     menuToggle.setAttribute("aria-expanded", "false");
     if (updateHash) history.replaceState(null, "", `#${name}`);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (scrollTop) window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   document.querySelectorAll("[data-tab-target]").forEach((button) => {
     button.addEventListener("click", () => openTab(button.dataset.tabTarget));
+  });
+
+  document.querySelectorAll("[data-scroll-target]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = document.querySelector(`#${button.dataset.scrollTarget}`);
+      if (!target) return;
+      openTab("home", false, false);
+      nav.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      history.replaceState(null, "", `#${button.dataset.scrollTarget}`);
+      window.requestAnimationFrame(() => target.scrollIntoView({ behavior: "smooth", block: "start" }));
+    });
   });
 
   menuToggle.addEventListener("click", () => {
@@ -132,16 +144,9 @@
       "Embedded Systems Engineer",
       "Model-Based Design Engineer"
     ];
-    const progress = roleRotator.parentElement.querySelector(".role-progress");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let roleIndex = 0;
     let roleTimer = null;
-
-    function restartRoleProgress() {
-      progress.classList.remove("is-running");
-      void progress.offsetWidth;
-      progress.classList.add("is-running");
-    }
 
     function changeRole() {
       roleRotator.classList.add("is-leaving");
@@ -150,14 +155,12 @@
         roleRotator.textContent = roles[roleIndex];
         roleRotator.classList.remove("is-leaving");
         roleRotator.classList.add("is-entering");
-        restartRoleProgress();
         window.setTimeout(() => roleRotator.classList.remove("is-entering"), 420);
       }, 240);
     }
 
     function startRoleRotation() {
       if (reduceMotion || roleTimer) return;
-      restartRoleProgress();
       roleTimer = window.setInterval(changeRole, 3600);
     }
 
@@ -165,7 +168,6 @@
       if (!roleTimer) return;
       window.clearInterval(roleTimer);
       roleTimer = null;
-      progress.classList.remove("is-running");
     }
 
     if ("IntersectionObserver" in window) {
@@ -181,5 +183,11 @@
 
   document.querySelector("#current-year").textContent = new Date().getFullYear();
   renderProjects();
-  openTab(location.hash.replace("#", "") || "home", false);
+  const initialView = location.hash.replace("#", "") || "home";
+  if (["about", "contact"].includes(initialView)) {
+    openTab("home", false, false);
+    window.requestAnimationFrame(() => document.querySelector(`#${initialView}`)?.scrollIntoView({ block: "start" }));
+  } else {
+    openTab(initialView, false);
+  }
 })();

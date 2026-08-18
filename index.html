@@ -12,9 +12,9 @@
   <title>Mahmoud Alsharnouby | Mechatronics Engineer</title>
   <link rel="icon" href="favicon-monochrome.png?v=8" type="image/png">
   <link rel="apple-touch-icon" href="favicon-monochrome.png?v=8">
-  <link rel="stylesheet" href="styles.css?v=13">
+  <link rel="stylesheet" href="styles.css?v=15">
   <script src="projects.js" defer></script>
-  <script src="script.js?v=5" defer></script>
+  <script src="script.js?v=7" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -37,8 +37,11 @@
 
       <nav class="tab-nav" aria-label="Primary navigation">
         <button class="nav-tab is-active" type="button" data-tab-target="home" aria-selected="true">Home</button>
+        <button class="nav-link" type="button" data-scroll-target="about">About</button>
         <button class="nav-tab" type="button" data-tab-target="experience" aria-selected="false">Experience</button>
         <button class="nav-tab" type="button" data-tab-target="projects" aria-selected="false">Projects</button>
+        <button class="nav-link" type="button" data-scroll-target="contact">Contact</button>
+        <a class="nav-link nav-download" href="assets/Mahmoud_Alsharnouby_CV.pdf" target="_blank" rel="noopener" download="Mahmoud_Alsharnouby_CV.pdf">Download CV</a>
       </nav>
 
       <button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">
@@ -50,7 +53,7 @@
 
   <main id="main-content">
     <section class="tab-panel is-active" id="home" data-tab-panel="home">
-      <div class="shell hero-grid">
+      <div class="shell hero-grid" id="about">
         <div class="hero-copy">
           <h1>Engineering ideas into <span>reliable systems.</span></h1>
           <p class="hero-lead">Mechatronics specialist with 8+ years of experience in model-based design, embedded systems, system modelling, simulation, control development, prototyping and digital twin solutions.</p>
@@ -67,7 +70,6 @@
           <img src="profile-2026-transparent.png" alt="Portrait of Mahmoud Alsharnouby">
           <div class="portrait-label" aria-label="Mechatronics Engineer, Embedded Systems Engineer and Model-Based Design Engineer">
             <span class="portrait-role" data-role-rotator aria-hidden="true">Mechatronics Engineer</span>
-            <span class="role-progress" aria-hidden="true"></span>
           </div>
         </a>
       </div>
@@ -154,10 +156,50 @@
         </button>
       </section>
 
+      <section class="shell impact-section" aria-labelledby="impact-heading">
+        <div class="section-heading">
+          <div><p class="eyebrow">Engineering impact</p><h2 id="impact-heading">Work carried through to <span>validation.</span></h2></div>
+          <p>Selected outcomes grounded in delivered engineering scope rather than unsupported metrics.</p>
+        </div>
+        <div class="impact-grid">
+          <article>
+            <span>01</span>
+            <h3>Safety-led product development</h3>
+            <p>Delivered a Toyota Fortuner safety impact structure from concept through 3D modelling, FEA, GD&amp;T and fabrication support.</p>
+            <div><small>SolidWorks</small><small>FEA</small><small>GD&amp;T</small></div>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Connected engineering insight</h3>
+            <p>Created asset-health and production monitoring tools and supported IoT and digital twin integration for predictive maintenance.</p>
+            <div><small>Digital Twins</small><small>IoT</small><small>Power BI</small></div>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Multidisciplinary systems integration</h3>
+            <p>Coordinated mechanical designs with electrical, software and BMS platforms, including verification to EN 81 and EN 115 standards.</p>
+            <div><small>V&amp;V</small><small>BMS</small><small>Systems</small></div>
+          </article>
+        </div>
+      </section>
+
       <section class="shell expertise-strip">
         <p>Core expertise</p>
         <div>
           <span>Mechatronics</span><span>Model-Based Design</span><span>Embedded Systems</span><span>MATLAB / Simulink</span><span>Control Systems</span><span>System Modelling</span><span>Simulation</span><span>Digital Twins</span><span>IoT &amp; MQTT</span><span>Python</span>
+        </div>
+      </section>
+
+      <section class="shell contact-panel" id="contact" aria-labelledby="contact-heading">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2 id="contact-heading">Let’s turn a complex system into a reliable result.</h2>
+          <p>Open to mechatronics, model-based design, embedded systems and digital twin opportunities.</p>
+        </div>
+        <div class="contact-actions">
+          <a class="button button-primary" href="mailto:eng.sharnouby17@gmail.com">Email Mahmoud <span aria-hidden="true">↗</span></a>
+          <a class="button button-secondary" href="https://www.linkedin.com/in/masharnouby" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+          <a class="button button-secondary cv-button" href="assets/Mahmoud_Alsharnouby_CV.pdf" target="_blank" rel="noopener" download="Mahmoud_Alsharnouby_CV.pdf">Download CV <span aria-hidden="true">↓</span></a>
         </div>
       </section>
     </section>
@@ -184,6 +226,7 @@
                   <li>Created Power BI and Tableau monitoring tools for asset health and production metrics.</li>
                   <li>Advised teams on IoT and digital twin integration for predictive maintenance.</li>
                 </ul>
+                <div class="timeline-tags"><span>Digital Twins</span><span>IoT</span><span>Power BI</span><span>Tableau</span></div>
               </div>
             </article>
             <article class="timeline-item">
@@ -197,6 +240,7 @@
                   <li>Built SolidWorks and ANSYS models for monitoring and predictive maintenance.</li>
                   <li>Applied DFM and risk identification to reduce manufacturing cost.</li>
                 </ul>
+                <div class="timeline-tags"><span>SolidWorks</span><span>ANSYS</span><span>FEA</span><span>DFM</span></div>
               </div>
             </article>
             <article class="timeline-item">
@@ -210,6 +254,7 @@
                   <li>Performed verification and validation to EN 81, EN 115 and KONE standards.</li>
                   <li>Produced coordinated 3D designs using SolidWorks, AutoCAD and Revit.</li>
                 </ul>
+                <div class="timeline-tags"><span>Systems Integration</span><span>V&amp;V</span><span>Revit</span><span>EN 81 / EN 115</span></div>
               </div>
             </article>
           </div>
@@ -227,7 +272,7 @@
           </section>
           <section class="info-card">
             <p class="eyebrow">Education</p>
-            <div class="education-item"><span>2027</span><h3>MSc Engineering — Mechatronics</h3><p>University of Évora, Portugal</p></div>
+            <div class="education-item"><span>Expected 2027</span><h3>MSc Engineering — Mechatronics <mark>In progress</mark></h3><p>University of Évora, Portugal</p></div>
             <div class="education-item"><span>2015</span><h3>BSc Mechatronics &amp; Robotics</h3><p>University of Wales, United Kingdom</p></div>
           </section>
           <section class="info-card">
@@ -240,6 +285,7 @@
           </section>
         </aside>
       </div>
+      <!-- [PLACEHOLDER] Recommendations are intentionally omitted until real LinkedIn recommendation text and attribution are provided. -->
     </section>
 
     <section class="tab-panel" id="projects" data-tab-panel="projects" hidden>
@@ -273,6 +319,7 @@
   <footer class="site-footer">
     <div class="shell footer-inner">
       <div><strong>Mahmoud Alsharnouby</strong><span>Mechatronics Engineer · Lisbon, Portugal</span></div>
+      <div class="footer-actions"><a href="mailto:eng.sharnouby17@gmail.com">Email</a><a href="https://www.linkedin.com/in/masharnouby" target="_blank" rel="noopener">LinkedIn</a><a href="assets/Mahmoud_Alsharnouby_CV.pdf" target="_blank" rel="noopener" download="Mahmoud_Alsharnouby_CV.pdf">CV ↓</a></div>
       <p>© <span id="current-year"></span> · Built for clarity, performance and easy updates.</p>
     </div>
   </footer>
