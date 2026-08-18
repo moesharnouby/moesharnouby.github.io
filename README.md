@@ -1,32 +1,57 @@
-# Mahmoud Alsharnouby — Portfolio
+<div align="center">
+  <img src="assets/profile.jpg" width="128" alt="Mahmoud Alsharnouby" />
 
-Static personal portfolio built for GitHub Pages.
+  # Mahmoud Alsharnouby
 
-## الرفع السريع
+  **Mechatronics Engineer · Mechanical Design · Digital Twin · Systems Integration**
 
-1. فك ضغط ملف الموقع على جهازك.
-2. افتح مستودع `moesharnouby.github.io` واختر **Add file → Upload files**.
-3. اسحب كل العناصر الموجودة داخل المجلد، بما فيها مجلد `assets`، ثم اضغط **Commit changes**.
-4. من **Settings → Pages** اختر `Deploy from a branch` ثم `main` و`/ (root)`.
-5. افتح `https://moesharnouby.github.io` بعد اكتمال النشر.
+  Lisbon, Portugal · Open to opportunities worldwide
 
-لا ترفع ملف ZIP نفسه؛ يجب فك ضغطه ورفع محتوياته.
+  [View Portfolio](https://moesharnouby.github.io) · [Download CV](assets/Mahmoud_Alsharnouby_CV.pdf) · [LinkedIn](https://www.linkedin.com/in/masharnouby) · [Email](mailto:eng.sharnouby17@gmail.com)
+</div>
 
-## Publish on GitHub Pages
+---
 
-1. Open the `moesharnouby.github.io` repository.
-2. Choose **Add file → Upload files**.
-3. Upload the contents of this folder, keeping the `assets` folder structure.
-4. Commit the files to the `main` branch.
-5. Open **Settings → Pages** and choose **Deploy from a branch**, then `main` and `/ (root)`.
-6. Visit `https://moesharnouby.github.io` after GitHub finishes the deployment.
+## About
 
-## Add another project
+Mechatronics and robotics engineer with **8+ years of experience** in mechanical design, sub-assembly modelling, prototyping, design validation and digital twin solutions across industrial consulting, manufacturing, oil and gas, and systems integration.
 
-1. Upload the project's cover image to `assets/projects/`.
-2. Open `projects.js` on GitHub and click the pencil icon.
-3. Duplicate one project object inside `window.portfolioProjects`.
-4. Change its `id`, title, client, category, image, summary, details and tools.
-5. Commit the change. The Projects tab will update automatically.
+My work combines practical mechanical engineering with data-driven tools to move projects from concept and CAD modelling through simulation, validation and fabrication support.
 
-Use lower-case file names without spaces. Publish only material you are authorised to share.
+## Selected Projects
+
+| Project | Client / Sector | Focus |
+|---|---|---|
+| Safety Impact Structure — Toyota Fortuner | Schlumberger | 3D modelling, FEA, GD&T and DFM |
+| Mobile Shale Shaker System | Egyptian Drilling Company | Hydraulic systems and steel structures |
+| Offshore Spool Winch | Halliburton | Offshore mechanical design and DNV requirements |
+| Offshore Site Container | Weatherford International | EN 12079 and DNV 2.7-1 compliance |
+| Cairo Metro Line 3 Systems Upgrade | KONE EG / Cairo Metro Authority | Elevator and escalator systems integration |
+
+[Explore all projects on the portfolio →](https://moesharnouby.github.io/#projects)
+
+## Core Expertise
+
+- **Mechanical design:** SolidWorks (CSWP), AutoCAD, Siemens NX and Revit
+- **Simulation and validation:** ANSYS, FEA, GD&T, DFM and risk identification
+- **Connected engineering:** Digital twins, predictive maintenance, IoT and MQTT
+- **Data and automation:** Python, SQL, Power BI, Tableau, DAX and MATLAB/Simulink
+- **Quality systems:** ISO 13485 design and development control
+
+## Experience
+
+- **Engineering Consultant — Mechanical & Industrial**, Meta Plat Inc. (2021–2026)
+- **Mechanical Design & Digital Twin Engineer**, PMICO Inc. (2018–2020)
+- **Mechanical Design & Systems Integration Engineer**, KONE EG (2015–2018)
+
+## Education
+
+- MSc Engineering — Mechatronics, University of Évora, Portugal
+- BSc Mechatronics & Robotics, University of Wales, United Kingdom
+
+---
+
+<div align="center">
+  <strong>Portfolio:</strong> <a href="https://moesharnouby.github.io">moesharnouby.github.io</a><br />
+  <sub>Built as a lightweight, responsive website hosted with GitHub Pages.</sub>
+</div>
