@@ -7,7 +7,7 @@
 
   Lisbon, Portugal · Open to opportunities worldwide
 
-  [View Portfolio](https://moesharnouby.github.io) · [Download CV](assets/Mahmoud_Alsharnouby_CV.pdf) · [LinkedIn](https://www.linkedin.com/in/masharnouby) · [Email](mailto:eng.sharnouby17@gmail.com)
+  [View Portfolio](https://moesharnouby.github.io) · [LinkedIn](https://www.linkedin.com/in/masharnouby) · [Email](mailto:eng.sharnouby17@gmail.com)
 </div>
 
 ---

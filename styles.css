@@ -235,7 +235,9 @@ img { display: block; max-width: 100%; }
 
 .portrait-card {
   position: relative;
-  min-height: 470px;
+  width: min(100%, 340px);
+  min-height: 410px;
+  justify-self: end;
   overflow: hidden;
   display: flex;
   align-items: flex-end;
@@ -243,6 +245,8 @@ img { display: block; max-width: 100%; }
   border-radius: 30px;
   background: linear-gradient(145deg, var(--surface), var(--surface-2));
   box-shadow: var(--shadow);
+  color: inherit;
+  text-decoration: none;
   isolation: isolate;
 }
 
@@ -264,7 +268,7 @@ img { display: block; max-width: 100%; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 35%;
+  object-position: 50% 32%;
   image-rendering: auto;
 }
 
@@ -379,8 +383,25 @@ img { display: block; max-width: 100%; }
 .skill-groups p, .education-item p { margin: .35rem 0 0; color: var(--muted); font-size: .78rem; }
 .education-item { position: relative; margin-top: 1.2rem; padding-left: 3.4rem; }
 .education-item span { position: absolute; left: 0; top: .05rem; color: var(--accent); font-size: .72rem; font-weight: 900; }
-.check-list { display: grid; gap: .55rem; margin: 1.2rem 0 0; padding: 0; list-style: none; color: var(--muted); font-size: .8rem; }
-.check-list li::before { content: "✓"; margin-right: .6rem; color: var(--accent-2); font-weight: 900; }
+.linkedin-source {
+  display: grid;
+  grid-template-columns: 42px 1fr auto;
+  align-items: center;
+  gap: .8rem;
+  margin-top: 1rem;
+  padding: .85rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  text-decoration: none;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.linkedin-source:hover { transform: translateY(-2px); border-color: #0a66c2; }
+.linkedin-mark { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 10px; background: #0a66c2; color: white; font-weight: 900; }
+.linkedin-source > span:nth-child(2) { display: grid; line-height: 1.35; }
+.linkedin-source strong { font-size: .82rem; }
+.linkedin-source small { margin-top: .2rem; color: var(--muted); font-size: .69rem; }
+.linkedin-source em { color: var(--muted); font-style: normal; }
 
 .projects-intro { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
 .projects-intro > div { flex: 1; }
@@ -456,7 +477,7 @@ img { display: block; max-width: 100%; }
   .nav-tab { width: 100%; border-radius: 10px; }
   .hero-grid { grid-template-columns: 1fr; min-height: auto; gap: 2.5rem; padding-block: 70px 48px; }
   .hero-copy { max-width: 760px; }
-  .portrait-card { width: min(100%, 500px); min-height: 500px; }
+  .portrait-card { width: min(100%, 340px); min-height: 410px; justify-self: start; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .stats article:nth-child(2) { border-right: 0; }
   .stats article:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
@@ -478,7 +499,7 @@ img { display: block; max-width: 100%; }
   .hero-lead { font-size: .98rem; }
   .hero-actions .button { flex: 1 1 170px; }
   .contact-links { display: grid; gap: .45rem; }
-  .portrait-card { min-height: 420px; border-radius: 22px; }
+  .portrait-card { width: min(100%, 320px); min-height: 370px; justify-self: center; border-radius: 22px; }
   .stats { grid-template-columns: 1fr 1fr; }
   .stats article { padding: 1.2rem 1rem; }
   .stats article:first-child, .stats article:nth-child(3) { padding-left: 0; }
