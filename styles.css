@@ -269,17 +269,22 @@ img { display: block; max-width: 100%; }
   position: relative;
   z-index: 2;
   width: calc(100% - 32px);
-  display: grid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
   margin: 16px;
-  padding: 1rem 1.1rem;
+  padding: .9rem 1rem;
   border: 1px solid rgba(255,255,255,.16);
   border-radius: 14px;
   background: rgba(8, 11, 15, .64);
   backdrop-filter: blur(10px);
+  white-space: nowrap;
 }
-.portrait-label strong { color: white; font-size: .94rem; }
-.portrait-label span { margin-top: .25rem; color: #c7ced6; font-size: .8rem; }
-.portrait-label small { margin-top: .2rem; color: #aeb6bf; font-size: .78rem; line-height: 1.35; }
+.portrait-label strong { color: white; font-size: .8rem; }
+.portrait-label span, .portrait-label abbr { color: #c7ced6; font-size: .72rem; }
+.portrait-label abbr { text-decoration: none; }
+.portrait-label > * + *::before { content: "·"; margin-right: .4rem; color: #87919c; font-weight: 400; }
 
 .stats {
   display: grid;
@@ -535,7 +540,10 @@ img { display: block; max-width: 100%; }
   .brand-identity span { right: -7px; width: 25px; font-size: .5rem; }
   .brand-copy strong { max-width: 54px; font-size: .8rem; }
   .theme-toggle, .menu-toggle { width: 36px; height: 36px; }
-  .portrait-label { width: calc(100% - 24px); margin: 12px; padding: .85rem .9rem; }
+  .portrait-label { width: calc(100% - 20px); gap: .28rem; margin: 10px; padding: .75rem .65rem; }
+  .portrait-label strong { font-size: .72rem; }
+  .portrait-label span, .portrait-label abbr { font-size: .66rem; }
+  .portrait-label > * + *::before { margin-right: .28rem; }
   .project-copy > p { flex-direction: column; gap: .2rem; }
 }
 
