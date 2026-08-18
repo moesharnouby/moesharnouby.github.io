@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/profile.jpg" width="128" alt="Mahmoud Alsharnouby" />
+  <img src="assets/profile-2026.jpg" width="128" alt="Mahmoud Alsharnouby" />
 
   # Mahmoud Alsharnouby
 
